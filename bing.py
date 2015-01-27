@@ -53,9 +53,10 @@ imageInstance.retrieve(totalURL, imageName)
 urllib.urlcleanup()
 
 os.chdir(sys.path[0])
-imagePos = directory + imageName
+imagePos = directory + "/" + imageName
 text_file = open("dir.txt", 'w')
 text_file.close()
 text_file = open("dir.txt", 'r+')
 text_file.write(imagePos + "\n")
 text_file.write(sys.path[0])
+text_file.close()
