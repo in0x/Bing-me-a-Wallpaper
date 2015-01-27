@@ -10,3 +10,5 @@ If you dont know how to set cronjobs you can use setCronJob.sh, which explain th
 If any of the files are not working you can try to set execute permission by executing "chmod +x FILEPATH" (gives execute right for the file)
 
 Currently works on OSX, but I'd like to add other OSes soon.
+
+Feel free to use any of the code, I put it under the [MIT license](http://opensource.org/licenses/MIT)
