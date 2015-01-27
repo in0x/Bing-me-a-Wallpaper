@@ -5,7 +5,7 @@ echo "for example, for everyday at 11 write * 11 * * *"
 echo
 echo "for every 50 minutes you could write 50 * * * *"
 echo
-echo "then enter the path where changeWallpaper.sh is stored (you can drag and drop into terminal)"
+echo "then enter the path where bing.sh is stored (you can drag and drop into terminal)"
 echo
 echo "press control + o to accept your entry and control + x to exit"
 echo
