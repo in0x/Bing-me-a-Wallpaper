@@ -8,7 +8,7 @@ import sys
 #get the current login name
 userName = getpass.getuser()
 
-bingSave = True;
+bingSave = False;
 #check if the user already has a wallpaper dir, if yes make a "bing" one
 #if not make one
 if os.path.exists("/Users/" + userName + "/Pictures/Bingwallpapers") :
