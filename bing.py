@@ -2,6 +2,8 @@ import urllib
 import urllib2
 import os
 import getpass
+import subprocess
+import sys
 
 #get the current login name
 userName = getpass.getuser()
@@ -9,7 +11,9 @@ userName = getpass.getuser()
 bingSave = True;
 #check if the user already has a wallpaper dir, if yes make a "bing" one
 #if not make one
-if os.path.exists("/Users/" + userName + "/Pictures/wallpapers") :
+if os.path.exists("/Users/" + userName + "/Pictures/Bingwallpapers") :
+	bingSave = True;
+elif os.path.exists("/Users/" + userName + "/Pictures/wallpapers") :
 	os.makedirs("/Users/" + userName + "/Pictures/BingWallpapers")
 	bingSave = True
 elif not os.path.exists("/Users/" + userName + "/Pictures/wallpapers") :
@@ -47,3 +51,11 @@ elif (bingSave) :
 imageInstance = urllib.URLopener()
 imageInstance.retrieve(totalURL, imageName) 
 urllib.urlcleanup()
+
+os.chdir(sys.path[0])
+imagePos = directory + imageName
+text_file = open("dir.txt", 'w')
+text_file.close()
+text_file = open("dir.txt", 'r+')
+text_file.write(imagePos + "\n")
+text_file.write(sys.path[0])

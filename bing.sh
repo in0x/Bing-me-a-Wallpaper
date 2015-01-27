@@ -1,10 +1,11 @@
+chmod +x 
 echo "Enter how often you'd like to check for new wallpapers"
 echo
 echo "for example, for everyday at 11 write * 11 * * *"
 echo
 echo "for every 50 minutes you could write 50 * * * *"
 echo
-echo "then enter the path where bing.py is stored (you can drag and drop into terminal)"
+echo "then enter the path where changeWallpaper.sh is stored (you can drag and drop into terminal)"
 echo
 echo "press control + o to accept your entry and control + x to exit"
 echo
