@@ -27,7 +27,9 @@ url = ""
 
 #build the relative url of the image, assuming they dont 
 #change the directory on me (cheeky bing people)
-for x in range(1, 56) :
+for x in range(1, 1000) :
+	if(httpString[45489 + x] == "'") :
+		break 
 	url += httpString[45489 + x]
 
 #change the desired resolution of the image
