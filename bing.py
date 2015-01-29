@@ -21,7 +21,7 @@ elif not os.path.exists("/Users/" + userName + "/Pictures/wallpapers") :
 	bingSave = False
 
 #Get the html code from bing
-httpString = urllib2.urlopen("http://www.bing.com/#").read()
+httpString = urllib2.urlopen("http://www.bing.de/#").read()
 httpOut = open('http.txt', 'w')
 httpOut.write(httpString)
 url = ""
