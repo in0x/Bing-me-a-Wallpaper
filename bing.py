@@ -1,77 +1,43 @@
-import urllib
 import urllib2
 import os
 import getpass
-import subprocess
-import sys
+import re
 
 #get the current login name
 userName = getpass.getuser()
+picuteRoot = "/Users/" + userName + "/Pictures/"
+savePath = picuteRoot + "BingWallpapers"
 
-bingSave = False;
 #check if the user already has a wallpaper dir, if yes make a "bing" one
 #if not make one
-if os.path.exists("/Users/" + userName + "/Pictures/Bingwallpapers") :
-	bingSave = True;
-elif os.path.exists("/Users/" + userName + "/Pictures/wallpapers") :
-	os.makedirs("/Users/" + userName + "/Pictures/BingWallpapers")
-	bingSave = True
-elif not os.path.exists("/Users/" + userName + "/Pictures/wallpapers") :
-	os.makedirs("/Users/" + userName + "/Pictures/wallpapers")
-	bingSave = False
+if not os.path.exists(savePath) :
+	if not os.path.exists(picuteRoot + "wallpapers") :
+		savePath = picuteRoot + "wallpapers"
+	os.makedirs(savePath)
 
 #Get the html code from bing
-httpString = urllib2.urlopen("http://www.bing.de/#").read()
-httpOut = open('http.txt', 'w')
-httpOut.write(httpString)
-url = ""
+htmlString = urllib2.urlopen("http://www.bing.com/").read()
 
 #build the relative url of the image, assuming they dont 
 #change the directory on me (cheeky bing people)
-#img={url:
-#use string.find()
-
-beginIndex = httpString.find("img={url:", 10000)
-
-"""for x in range(1, 1000) :
-	if(httpString[45489 + x] == "'") :
-		break 
-	url += httpString[45489 + x]"""
-
-for x in range(beginIndex + len("img={url:") + 2, beginIndex + 1000) :
-	if(httpString[x] == "'") :
-		break
-	url += httpString[x]
+urlRe = re.search("g_img={url:'(.*?)\.jpg'", htmlString)
+url = urlRe.group(1) + ".jpg"
 
 #change the desired resolution of the image
-print(url)
 url = url.replace("1366x768", "1920x1200")
 
 #build a total url to download the file
-totalURL = "http://www.bing.com/" + url
+totalURL = "http://www.bing.com" + url
 
-#extract the image name for saving
-imageName = url[15:]
-print(imageName)
-
-#change to image directory for saving
-if not (bingSave) :
-	directory = ("/Users/" + userName + "/Pictures/wallpapers")
-	os.chdir(directory)
-elif (bingSave) :
-	directory = ("/Users/" + userName + "/Pictures/BingWallpapers")
-	os.chdir(directory)
+imageName = savePath + "/" + url.split('/')[-1]
+print("saving image to: " + imageName)
 
 #create a connection instance and download the image + save it
-imageInstance = urllib.URLopener()
-imageInstance.retrieve(totalURL, imageName) 
-urllib.urlcleanup()
+imageFile = urllib2.urlopen(totalURL)
+imageOut = open(imageName, 'wb')
+imageOut.write(imageFile.read())
+imageOut.close()
 
-os.chdir(sys.path[0])
-imagePos = directory + "/" + imageName
 text_file = open("dir.txt", 'w')
-text_file.close()
-text_file = open("dir.txt", 'r+')
-text_file.write(imagePos + "\n")
-text_file.write(sys.path[0])
+text_file.write(imageName + "\n")
 text_file.close()
