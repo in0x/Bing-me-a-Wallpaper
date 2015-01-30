@@ -13,6 +13,8 @@ The way this works on my set-up is that i have a cronjob set for every 60th minu
   2. Reads the image path from dir.txt into a variable
   3. Sets that path to your desktop image via applescript
 
+The images are also archived in your images directory. 
+
 ###Using cron
 If you dont know how to set cronjobs you can use setCronJob.sh, which explain the syntax and then opens the appropriate file for you.
 
